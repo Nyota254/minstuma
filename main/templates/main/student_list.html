@@ -1,0 +1,10 @@
+<h1>Student List<h1>
+
+    <h2>Students</h2>
+    {% for student in students %}
+    <ul>
+        <li>{{ student.first_name }}</td>
+    </ul>
+    {% empty %}
+    <h3>No items in list</h3>
+    {% endfor %}

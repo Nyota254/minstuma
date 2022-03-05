@@ -1,7 +1,9 @@
 from email.policy import HTTP
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.list import ListView
+from main.models import Student
 
-def studentList(request):
-    return HttpResponse('<h1>Hello</h1>')
+class StudentList(ListView):
+    model = Student
+    context_object_name = 'students'
 
