@@ -48,6 +48,12 @@ class StudentList(LoginRequiredMixin,ListView):
     def get_context_data(self,**kwargs):
         context =super().get_context_data(**kwargs)
         context['students'] = context['students'].filter(user=self.request.user)
+
+        search_value = self.request.GET.get('search-area') or ''
+        if search_value:
+            context['students'] = context['students'].filter(first_name__icontains=search_value)
+
+        context['search_value'] = search_value
         return context
 
 class StudentDetail(LoginRequiredMixin,DetailView):

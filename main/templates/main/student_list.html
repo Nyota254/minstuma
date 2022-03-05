@@ -8,6 +8,12 @@
 
 <h1>Student List<h1>
 
+<p>Search students</p>
+<form method="get">
+    <input type="text" name="search-area" value="{{search_value}}">
+    <input type="submit" value="search">
+</form>
+
 <a href="{% url 'create-student' %}">Create Student</a>
 
 <h2>Students</h2>
