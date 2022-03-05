@@ -1,3 +1,7 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
 <h1>Login - Lets Get Started</h1>
 <p>Manage students with ease</p>
 
@@ -8,3 +12,5 @@
 </form>
 
 <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+
+{% endblock content %}
