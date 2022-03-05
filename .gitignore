@@ -10,3 +10,5 @@ virtual/
 .env
 #ignore db
 db.sqlite3
+#ignore migrations
+migrations/
