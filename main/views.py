@@ -16,6 +16,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 class CustomLoginView(LoginView):
+    '''
+    Login Page Customized View
+    '''
     template_name = 'main/login.html'
     fields = '__all__'
     redirect_authenticated_user = True
@@ -24,6 +27,9 @@ class CustomLoginView(LoginView):
         return reverse_lazy('students')
 
 class RegisterPage(FormView):
+    '''
+    Class View to allow registration of user
+    '''
     template_name = 'main/register.html'
     form_class = UserCreationForm
     redirect_authenticated_user = True
@@ -42,6 +48,9 @@ class RegisterPage(FormView):
 
 
 class StudentList(LoginRequiredMixin,ListView):
+    '''
+    Class view to list students
+    '''
     model = Student
     context_object_name = 'students'
 
@@ -57,24 +66,37 @@ class StudentList(LoginRequiredMixin,ListView):
         return context
 
 class StudentDetail(LoginRequiredMixin,DetailView):
+    '''
+    Class View to display student detail
+    '''
     model = Student
     context_object_name = 'student'
 
 class StudentCreate(LoginRequiredMixin,CreateView):
+    '''
+    Class View to add new student
+    '''
     model = Student
     fields = ['first_name','second_name','course','notes','course_complete']
     success_url = reverse_lazy('students')
 
     def form_valid(self,form):
+        '''Data for user field ommitted on fields display'''
         form.instance.user = self.request.user
         return super(StudentCreate,self).form_valid(form)
 
 class StudentUpdate(LoginRequiredMixin,UpdateView):
+    '''
+    Class View to display form to update student details
+    '''
     model = Student
     fields = '__all__'
     success_url = reverse_lazy('students')
 
 class StudentDelete(LoginRequiredMixin,DeleteView):
+    '''
+    Class View to allow deletion of a student
+    '''
     model = Student
     context_object_name = 'student'
     success_url = reverse_lazy('students')
