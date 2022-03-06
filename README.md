@@ -7,6 +7,9 @@ This is a mini student management platform dubbed minstuma
 1. User can delete students
 1. User can view student details
 
+## Current Api's
+All student data apis can be found under   ->   /api/students
+
 ## Getting Started
 
 Fork this repository or clone it to your local machine on ubuntu use the following commands
