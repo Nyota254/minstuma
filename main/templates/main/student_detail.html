@@ -2,6 +2,13 @@
 
 {% block content %}
 
-<h1>Task Detail: {{student}}</h1>
+<h1>Student Detail: {{student}}</h1>
+<p>First Name: {{ student.first_name }}</p>
+<p>Second Name: {{ student.second_name }}</p>
+<p>Course Taken: {{ student.course }}</p>
+<p>Enrollment date: {{ student.enrollment }}</p>
+<p>Notes on student: {{ student.notes }}</p>
 
+<a class="btn btn-primary" href="{% url 'update-student' student.id %}">Edit Student</a>
+<a class="btn btn-primary" href="{% url 'students' %}">Back Home</a>
 {% endblock content %}

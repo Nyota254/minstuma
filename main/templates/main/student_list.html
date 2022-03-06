@@ -2,35 +2,99 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
-    <p>{{ request.user }}</p>
-    <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'login'%}">Login</a>
-{% endif %}
 
-<h1>Student List<h1>
+<!-- <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"> -->
 
-<p>Search students</p>
-<form method="get">
+    <div class="home-header">
+        <div>
+            <h1>Welcome {{ request.user|title }}</h1>
+            <h3 style="margin:0"> Active Students :  | Completed Students :</h3>
+        </div>
+        <div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login'%}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+<div class="top-wrapper">
+    <form method="get">
+    <div class="input-group">
+        <div class="form-outline">
+            
+          <input type="search" id="form1" name="search-area" value="{{search_value}}" class="form-control" />
+          <label class="form-label" for="form1">Search</label>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </form>
+
+<!-- <form method="get">
     <input type="text" name="search-area" value="{{search_value}}">
     <input type="submit" value="search">
-</form>
+</form> -->
 
-<a href="{% url 'create-student' %}">Create Student</a>
+<a href="{% url 'create-student' %}" class="btn btn-primary" ><i class="fas fa-plus">  Create Student</i></a>
+</div>
 
-<h2>Students</h2>
-<ol>
+<table class="table table-sm align-middle">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Course</th>
+        <th scope="col">Complete</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
+        <th scope="col">Detail</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for student in students %}
-        <li>{{ student.first_name }}
-              <a href="{% url 'student' student.id %}">View Student >></a>
-                <a href="{% url 'update-student' student.id %}">Edit >></a>
-                <a href="{% url 'delete-student' student.id %}">Delete</a>
-        </li> 
-    {% empty %}
-    <h3>No items in list</h3>
-    {% endfor %}
-</ol>
+    
+      <tr>
+        <th scope="row"></th>
+        <td>{{ student }}</td>
+        <td>{{ student.course }}</td>
+        {% if student.complete %}
+            <td> Yes </td>
+        {% else %}
+            <td> No </td>
+        {% endif %}
+        <td>
+          <a href="{% url 'delete-student' student.id %}" class="btn btn-danger btn-sm px-3">
+            <i class="fas fa-times"></i>
+          </a>
+        </td>
+        <td>
+            <a href="{% url 'update-student' student.id %}" class="btn btn-primary btn-sm px-3">
+                <i class="fas fa-pen"></i>
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'student' student.id %}" class="btn btn-secondary btn-sm px-3">
+                <i class="fas fa-eye"></i>
+            </a>
+          </td>
+      </tr>
+      {% empty %}
+    <h3>No Students in list. Start Managing Students Today</h3>
+  {% endfor %}
+    </tbody>
+  </table>
+
+
+<!-- 
+</div>
+<div class="col-md-2"></div>
+</div> -->
 
 
 {% endblock content %}

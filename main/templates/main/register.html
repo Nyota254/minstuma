@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <h1>Register - Thank you for Choosing Minstuma</h1>
@@ -6,8 +7,10 @@
 
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Register">
+    {{ form|crispy }}
+    <div class="d-grid gap-3">
+    <input class="btn btn-primary" type="submit" value="Register">
+</div>
 </form>
 
 <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>

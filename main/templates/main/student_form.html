@@ -1,13 +1,17 @@
 {% extends 'main/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <h1>Student creation form</h1>
 <a href="{% url 'students'%}" >Go Back</a>
 <form action="" method="post">
     {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="submit">
+    {{ form|crispy }}
+    <div class="d-grid gap-3">
+    <input class="btn btn-primary" type="submit" value="submit">
+</div>
 </form>
 
 {% endblock content %}

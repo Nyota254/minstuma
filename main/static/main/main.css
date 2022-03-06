@@ -1,3 +1,33 @@
 body {
-    background-color: lightblue;
+    background-color: #fafafa;
+    /* background-image:url(../main/pattern.jpg); */
+    padding-top:50px;
+    font-family: 'Nunito', sans-serif;
 }
+
+
+.home-header{
+    display: flex;
+    justify-content: space-between;
+    padding:10px;
+    border-radius:5px 5px 0 0;
+    color:#ffffff;
+    /* background-image:url(../main/pattern.jpg); */
+    background-color: #101F3C;
+}
+
+.home-header a {
+    color:#ffffff;
+    text-decoration: none;
+}
+
+.top-wrapper {
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding:10px;
+}
+
+/* .d-grid {
+    padding-top:10px;
+} */
