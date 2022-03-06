@@ -14,6 +14,9 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from rest_framework.decorators import APIView
+from rest_framework.response import Response
+from .serializer import StudentSerializer
 
 class CustomLoginView(LoginView):
     '''
@@ -100,4 +103,13 @@ class StudentDelete(LoginRequiredMixin,DeleteView):
     model = Student
     context_object_name = 'student'
     success_url = reverse_lazy('students')
+
+class StudentListApi(APIView):
+    '''
+    Api to give data on students
+    '''
+    def get(self,request):
+        all_students = Student.objects.all() 
+        serializers = StudentSerializer(all_students,many=True)
+        return Response(serializers.data)
 

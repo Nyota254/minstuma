@@ -8,6 +8,7 @@ from main.views import (
     StudentDelete,
     CustomLoginView,
     RegisterPage,
+    StudentListApi
 )
 
 urlpatterns = [
@@ -18,5 +19,6 @@ urlpatterns = [
     path('delete-student/<int:pk>',StudentDelete.as_view(),name="delete-student"),
     path('login/',CustomLoginView.as_view(),name='login'),
     path('logout/',LogoutView.as_view(next_page='login'),name='logout'),
-    path('register/',RegisterPage.as_view(),name='register')
+    path('register/',RegisterPage.as_view(),name='register'),
+    path('api/students',StudentListApi.as_view())
 ]
