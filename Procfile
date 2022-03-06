@@ -1,0 +1,1 @@
+web: gunicorn minstuma.wsgi --log-file -
